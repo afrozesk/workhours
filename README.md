@@ -17,3 +17,13 @@ _Linux systems are prefered_
   - PHP 7.4
   - nginx (server)
   - mysql 5.7
+
+## How to run
+- copy `.env.example` to `.env`
+- copy `build/docker/.env.example` to `.build/docker/env`
+- edit `.env` files as per your liking
+- generate 32 char log application key (`APP_KEY`) for `Lumen` and add it to `.env`
+- edit your `/etc/hosts` file and add following line `127.0.0.1 workhours.local`
+- run `./build/start.sh` to start docker containers
+- to stop docker containers use `./build/stop.sh`
+
