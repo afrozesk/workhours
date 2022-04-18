@@ -1,0 +1,65 @@
+version: '3'
+services:
+  php:
+    build: PHP
+    container_name: php7.4
+    restart: on-failure
+    volumes:
+      - ${WORKHOURS_DIR}:/var/www/workhours
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.25'
+          memory: 1G
+    networks:
+      - workhours
+  nginx:
+    build: Nginx
+    container_name: server
+    restart: on-failure
+    ports:
+      - ${NGINX_PORT}:80
+    volumes:
+      - ${WORKHOURS_DIR}:/var/www/workhours
+      - ./Nginx/sites/workhours.conf:/etc/nginx/conf.d/workhours.conf
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.25'
+          memory: 1G
+    networks:
+      - workhours
+  mysql:
+    build: MYSQL
+    container_name: mysql
+    restart: on-failure
+    ports:
+      - ${MYSQL_PORT}:3306
+    user: '1000'
+    volumes:
+      - ./MYSQL/initdb.d/start.sql:/docker-entrypoint-initdb.d/1.sql:ro
+      - ./MYSQL/data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ADMIN_PWD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PWD}
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2G
+        reservations:
+          cpus: '0.25'
+          memory: 1G
+    networks:
+      - workhours
+#Docker Networks
+networks:
+  workhours:
+    driver: bridge
