@@ -55,6 +55,9 @@ class EmployeeModel extends Model
                     ->where(function (Builder $query) use ($date): void {
                         if ($date) {
                             $query->where('date', '=', $date->toDateString());
+                        } else {
+                            // List only present and future shifts
+                            $query->where('date', '>=', Carbon::today()->toDateString());
                         }
                     });
     }
