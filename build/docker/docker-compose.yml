@@ -2,7 +2,7 @@ version: '3'
 services:
   php:
     build: PHP
-    container_name: php7.4
+    container_name: php8
     restart: on-failure
     volumes:
       - ${WORKHOURS_DIR}:/var/www/workhours

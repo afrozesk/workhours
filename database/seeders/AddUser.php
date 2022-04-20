@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
+use App\Models\UserModel;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -18,7 +18,7 @@ class AddUser extends Seeder
      */
     public function run(): void
     {
-        User::create([
+        UserModel::create([
             'email' => env('USER_EMAIL'),
             'password' => Hash::make(env('USER_PWD')),
         ]);
