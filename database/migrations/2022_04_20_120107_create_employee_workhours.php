@@ -19,11 +19,8 @@ class CreateEmployeeWorkhours extends Migration
     public function up(): void
     {
         Schema::create((new EmployeeWorkHoursModel())->getTable(), function (Blueprint $table): void {
-            $table->foreign('employee_id')
-                  ->references('id')
-                  ->on(new EmployeeModel())
-                  ->onUpdate('cascade')
-                  ->onDelete('restrict')
+            $table->integer('employee_id')
+                  ->unsigned()
                   ->comment('employee id');
 
             $table->date('date')

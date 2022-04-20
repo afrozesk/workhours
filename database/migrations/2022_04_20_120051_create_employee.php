@@ -22,10 +22,10 @@ class CreateEmployee extends Migration
                   ->comment('employee id');
 
             $table->string('name')
-                  ->unique()
                   ->comment('employee name');
 
             $table->string('email')
+                  ->unique()
                   ->comment('employee email unique');
 
             $table->timestamps();
