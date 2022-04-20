@@ -10,14 +10,14 @@ use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
 /**
- * Class User.
+ * Class UserModel.
  *
  * @property int id
  * @property string email
  * @property string password
  * @property string api_token
  */
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class UserModel extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable;
     use Authorizable;

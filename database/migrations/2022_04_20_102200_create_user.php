@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\UserModel;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,7 @@ class CreateUser extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table): void {
+        Schema::create((new UserModel())->getTable(), function (Blueprint $table): void {
             $table->id()
                   ->comment('user id');
 
@@ -43,6 +44,6 @@ class CreateUser extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists((new UserModel())->getTable());
     }
 }
