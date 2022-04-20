@@ -13,6 +13,10 @@ use Mockery\Exception;
 
 /**
  * Class EmployeeModel.
+ *
+ * @property int id
+ * @property string name
+ * @property string email
  */
 class EmployeeModel extends Model
 {
