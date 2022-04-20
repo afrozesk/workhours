@@ -1,0 +1,8 @@
+/vendor
+/.idea
+.env
+.phpunit.result.cache
+composer.lock
+
+# Ignore docker env
+build/docker/.env
