@@ -29,6 +29,7 @@ _Linux systems are prefered_
 
 ## How to setup Lumen
  - goto php docker container `docker exec -it php8 bash`
+ - run `composer update -v`
  - run `php artisan migrate`
  - run `php artisan db:seed`
  - run `php artisan base_user:api_token` cop the token printed on console and use this token as your bearer token for HTTP headers
