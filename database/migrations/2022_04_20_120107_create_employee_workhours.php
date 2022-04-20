@@ -26,10 +26,10 @@ class CreateEmployeeWorkhours extends Migration
             $table->date('date')
                   ->comment('shift date');
 
-            $table->time('start_hour')
+            $table->tinyInteger('start_hour')
                   ->comment('shift start hour');
 
-            $table->time('end_hour')
+            $table->tinyInteger('end_hour')
                   ->comment('shift end hour');
 
             $table->timestamps();
