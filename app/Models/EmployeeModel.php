@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Entities\Date\Date;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -67,8 +68,11 @@ class EmployeeModel extends Model
      */
     public function addShift(Request $request): EmployeeWorkHoursModel
     {
+        // Check if date is Valid
+        Date::isValid($request->get('date'));
+
         /** @var Carbon $date */
-        $date = Carbon::parse($request->get('date'));
+        $date = Carbon::createFromFormat('Y-m-d', $request->get('date'));
 
         /** @var string $startHour */
         $startHour = $request->get('start_hour');
