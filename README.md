@@ -14,7 +14,7 @@ _Linux systems are prefered_
 
 ## Architecture 
 - Docker containers
-  - PHP 7.4
+  - PHP 8.1
   - nginx (server)
   - mysql 5.7
 
