@@ -1,8 +1,15 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-(new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
+use App\Console\Kernel as ConsoleKernel;
+use App\Exceptions\Handler;
+use Illuminate\Contracts\Console\Kernel;
+use Illuminate\Contracts\Debug\ExceptionHandler;
+use Laravel\Lumen\Application;
+use Laravel\Lumen\Bootstrap\LoadEnvironmentVariables;
+
+(new LoadEnvironmentVariables(
     dirname(__DIR__)
 ))->bootstrap();
 
@@ -12,20 +19,20 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 |--------------------------------------------------------------------------
 | Create The Application
 |--------------------------------------------------------------------------
-|
+|App\Exceptions
 | Here we will load the environment and create the application instance
 | that serves as the central piece of this framework. We'll use this
 | application as an "IoC" container and router for this framework.
 |
 */
 
-$app = new Laravel\Lumen\Application(
+$app = new Application(
     dirname(__DIR__)
 );
 
-// $app->withFacades();
+$app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -39,13 +46,13 @@ $app = new Laravel\Lumen\Application(
 */
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+    ExceptionHandler::class,
+    Handler::class
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+    Kernel::class,
+    ConsoleKernel::class
 );
 
 /*
@@ -72,13 +79,9 @@ $app->configure('app');
 |
 */
 
-// $app->middleware([
-//     App\Http\Middleware\ExampleMiddleware::class
-// ]);
-
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'auth' => App\Http\Middleware\Authenticate::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -92,8 +95,8 @@ $app->configure('app');
 */
 
 // $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
-// $app->register(App\Providers\EventServiceProvider::class);
+$app->register(App\Providers\AuthServiceProvider::class);
+// $app->register(App\ProvidersApp\Exceptions\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------
@@ -109,7 +112,7 @@ $app->configure('app');
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
-    require __DIR__.'/../routes/web.php';
+    require __DIR__ . '/../routes/web.php';
 });
 
 return $app;
