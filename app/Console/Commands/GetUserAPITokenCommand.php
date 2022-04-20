@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\User;
+use App\Models\UserModel;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
 
@@ -31,8 +31,8 @@ class GetUserAPITokenCommand extends Command
         /** @var string $userPassword */
         $userPassword = env('USER_PWD');
 
-        /** @var User $user */
-        $user = User::query()->where('email', $userEmail)->firstOrFail();
+        /** @var UserModel $user */
+        $user = UserModel::query()->where('email', $userEmail)->firstOrFail();
 
         /** @var string|null $apiToken */
         $apiToken = null;
