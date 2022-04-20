@@ -3,7 +3,7 @@
 This api helps organize workhours of employees
 
 ## Framework
-Build using [Lumen](https://github.com/laravel/lumen) on top of PHP 7.4
+Build using [Lumen](https://github.com/laravel/lumen) on top of PHP 8.1
 
 ## Requirements
 - Bash
