@@ -26,7 +26,7 @@ $router->group(['middleware' => 'auth', 'namespace' => 'Authenticated\v1'], func
             'uses' => 'EmployeeController@insert',
         ]);
 
-        $router->group(['prefix' => 'shifts', 'namspace' => 'Shifts'], function () use ($router) {
+        $router->group(['prefix' => 'shifts', 'namespace' => 'Shifts'], function () use ($router) {
             // Add shift
             $router->post('/{employeeId}', [
                 'as' => 'add_shift',
